@@ -1,0 +1,45 @@
+[project]
+name = "agentic-finetune-pipeline"
+version = "0.1.0"
+description = "End-to-end agentic LLM fine-tuning pipeline (Airflow + Unsloth + Ollama)"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+
+dependencies = [
+    "datasets==2.20.0",
+    "transformers==4.44.2",
+    "trl==0.11.4",
+    "accelerate==0.33.0",
+    "peft==0.12.0",
+    "requests>=2.32",
+    "huggingface-hub==0.24.6",
+    "torchao==0.13.0",
+]
+
+[project.optional-dependencies]
+gpu = [
+    "unsloth[cu121-torch240]",
+    "torch==2.4.0",
+    "bitsandbytes==0.43.3",
+]
+
+cpu = [
+    "torch==2.4.0",
+    "bitsandbytes==0.43.3",
+]
+
+dev = [
+    "apache-airflow==2.9.3",
+    "apache-airflow-providers-docker>=3.9.0",
+    "docker>=7.0.0",
+]
+
+[tool.uv]
+python-preference = "only-managed"
+
+[tool.setuptools]
+packages = []
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"

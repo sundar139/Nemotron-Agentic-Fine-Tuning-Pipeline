@@ -1,0 +1,19 @@
+FROM ./merged_gguf/agentic-phi3.gguf
+
+# Phi-3 chat template
+TEMPLATE """{{ if .System }}<|system|>
+{{ .System }}<|end|>
+{{ end }}{{ if .Prompt }}<|user|>
+{{ .Prompt }}<|end|>
+{{ end }}<|assistant|>
+"""
+
+SYSTEM """You are a helpful AI agent. When the user asks you to perform a task, \
+decide whether to answer directly or call one of the available tools. \
+When using a tool, output a JSON object with "name" and "arguments" keys."""
+
+PARAMETER stop "<|end|>"
+PARAMETER stop "<|user|>"
+PARAMETER stop "<|system|>"
+PARAMETER temperature 0.2
+PARAMETER num_ctx 4096

@@ -1,0 +1,36 @@
+# ── Python ────────────────────────────────────────────────────
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# ── Generated data (large, recreated by the DAG) ─────────────
+data/training_data.jsonl
+data/eval_prompts.jsonl
+data/eval_results.jsonl
+
+# ── Model artifacts (large binaries) ─────────────────────────
+models/lora_agentic_model/
+models/merged_gguf/
+models/training_outputs/
+outputs/
+
+# ── Secrets ───────────────────────────────────────────────────
+.env
+docker/.env
+env/
+
+# ── Airflow runtime ──────────────────────────────────────────
+logs/
+airflow.db
+airflow.cfg
+
+# ── IDE ──────────────────────────────────────────────────────
+.vscode/
+.idea/
+
+# ── OS ───────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db

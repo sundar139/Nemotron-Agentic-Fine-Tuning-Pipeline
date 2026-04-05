@@ -1,0 +1,17 @@
+ARG AIRFLOW_VERSION=2.9.3
+FROM apache/airflow:${AIRFLOW_VERSION}
+
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    curl \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+USER airflow
+
+RUN pip install --no-cache-dir \
+    "datasets==2.20.0" \
+    "huggingface_hub>=0.23" \
+    "apache-airflow-providers-docker>=3.9.0" \
+    "requests==2.32.3"
