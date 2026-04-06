@@ -275,7 +275,7 @@ def main() -> None:
         user_turns = [m for m in messages if m.get("role") == "user"]
         user_content = user_turns[0].get("content", "")
 
-        judge_prompt = build_judge_prompt(tools, user_content, agent_outputs[i])
+        judge_prompt = build_judge_prompt(tools, user_content, agent_outputs[i] or "")
 
         t0           = time.time()
         judge_answer = call_ollama(JUDGE_MODEL, judge_prompt)
