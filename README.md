@@ -52,6 +52,54 @@ Primary run artifacts:
 - `models/merged_gguf/agentic-phi3.gguf`
 - `data/eval_results.jsonl`
 
+## Training and evaluation metrics
+
+The following metrics are from the current repository artifacts (`checkpoint-625`, `eval_results.jsonl`, and local Ollama runtime) as of 2026-05-07.
+
+### A) Nemotron-Agentic-v1 training sample count
+
+- Training samples used: **5,000** (`data/training_data.jsonl` line count)
+
+### B) Training loss (curve + final)
+
+Representative points from `models/training_outputs/checkpoint-625/trainer_state.json`:
+
+| Step | Train loss |
+| ---: | ---: |
+| 5 | 1.6739 |
+| 25 | 0.5430 |
+| 50 | 0.0681 |
+| 100 | 0.0064 |
+| 200 | 0.0026 |
+| 300 | 0.0004 |
+| 400 | 0.0004 |
+| 500 | 0.0005 |
+| 625 | **0.0002** |
+
+### C) LLM judge score statistics across eval samples
+
+Computed from `data/eval_results.jsonl` (`passed` mapped to 1, `failed` mapped to 0):
+
+- Eval samples: **50**
+- Mean judge score: **0.3200**
+- Std. dev. (population): **0.4665**
+- Pass rate: **32.0%** (16/50)
+
+### D) GGUF artifact size
+
+- `models/merged_gguf/agentic-phi3.gguf`: **2,318,919,552 bytes**
+- Approx size: **2,211.49 MiB** (**2.16 GiB**)
+
+### E) Ollama inference latency (tokens/sec)
+
+Measured on local Ollama with model `agentic-phi3` over 3 non-streaming generations:
+
+- Run 1: 96.50 tokens/sec
+- Run 2: 112.59 tokens/sec
+- Run 3: 77.18 tokens/sec
+- Mean throughput: **95.42 tokens/sec**
+- Std. dev.: **14.47 tokens/sec**
+
 ## Quickstart
 
 Requirements:
